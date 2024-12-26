@@ -15,9 +15,9 @@ sqlmodel==0.0.22
 uvicorn==0.25.0
 fastapi-cli[standard]==0.0.5  
 fastapi==0.115.3 
-pyttsx3
-SpeechRecognition
-setuptools
-beautifulsoup4
-tiktoken
-google-generativeai
+# pyttsx3
+# SpeechRecognition
+# setuptools
+# beautifulsoup4
+# tiktoken
+# google-generativeai

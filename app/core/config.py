@@ -37,23 +37,5 @@ class Settings(BaseSettings):
     )
 
     PROJECT_NAME: str
-    DATABASE_HOST: str
-    DATABASE_USERNAME: str
-    DATABASE_PASSWORD: str
-    DATABASE_NAME: str
-    DATABASE_PORT: int
-
-    @computed_field 
-    @property
-    def SQLALCHEMY_DATABASE_URI(self) -> PostgresDsn:
-        return MultiHostUrl.build(
-            scheme="postgresql+psycopg",
-            username=self.DATABASE_USERNAME,
-            password=self.DATABASE_PASSWORD,
-            host=self.DATABASE_HOST,
-            port=self.DATABASE_PORT,
-            path=self.DATABASE_NAME,
-        )
-
 
 settings = Settings()
