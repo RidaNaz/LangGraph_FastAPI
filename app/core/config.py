@@ -11,10 +11,6 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 from typing_extensions import Self
 
 from ..utils.helpers import parse_cors
-from dotenv import load_dotenv
-import os
-
-load_dotenv()  
 
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(

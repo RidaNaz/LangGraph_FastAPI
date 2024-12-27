@@ -34,6 +34,7 @@ async def call_module(state: State) -> Dict[str, object]:
         await session.send(input=f"{history_str}\nUser: {messages[-1].content}", end_of_turn=True)
         turn = session.receive()
         response_text = ""
+        
         async for chunk in turn:
             if chunk.text is not None:
                 response_text += chunk.text
