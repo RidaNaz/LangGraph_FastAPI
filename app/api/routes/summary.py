@@ -158,9 +158,7 @@ builder.add_conditional_edges(
     {"summarize": "summarize", END: END},
 )
 
-graph = builder.compile(
-    checkpointer=memory
-    )
+graph = builder.compile(checkpointer=memory)
 
 @router.get("/")
 async def run(message:str):
