@@ -31,7 +31,7 @@ config = {
 
 # Load the model and feature extractor
 model_name = "lxyuan/vit-xray-pneumonia-classification"
-model = AutoModelForImageClassification.from_pretrained(model_name, use_auth_token=HUGGINGFACE_TOKEN)
+model = AutoModelForImageClassification.from_pretrained(model_name, token=HUGGINGFACE_TOKEN)
 feature_extractor = AutoFeatureExtractor.from_pretrained(model_name)
 
 # State Class
