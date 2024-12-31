@@ -106,13 +106,14 @@ async def call_modle(state: State):
   # Initialize messages from the state
   messages = state["messages"]
 
-  # Extract the content from HumanMessage objects
-  message_texts = [message.content for message in messages]
-  
   # Prepend a summary if it exists
   summary = state.get("summary", "")
   if summary:
-      message_texts.insert(0, f"Summary of conversationearlier: {summary}")
+    system_message = f"Summary of conversation earlier: {summary}"
+    messages = [SystemMessage(content=system_message)] + messages
+        
+    # Extract the content from HumanMessage objects
+  message_texts = [message.content for message in messages]
 
   async with client.aio.live.connect(model=MODEL, config=config) as session:
     

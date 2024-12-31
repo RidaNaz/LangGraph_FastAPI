@@ -14,3 +14,6 @@ fastapi==0.115.3
 python-multipart
 Pillow
 torch
+pytesseract
+pymupdf
+tesseract
