@@ -9,6 +9,9 @@ from pydantic import (
 from pydantic_core import MultiHostUrl
 from pydantic_settings import BaseSettings, SettingsConfigDict
 from typing_extensions import Self
+from dotenv import load_dotenv
+
+load_dotenv()  
 
 from ..utils.helpers import parse_cors
 

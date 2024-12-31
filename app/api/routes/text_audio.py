@@ -142,7 +142,7 @@ async def call_modle(state: State):
   messages.append(response_message)
 
   # Display the audio file in a Jupyter/Colab notebook
-  return Audio(FILE_NAME, autoplay=True), {"messages": messages[-1]}
+  return Audio(FILE_NAME, autoplay=True), {"messages": messages}
   
 
 builder:StateGraph = StateGraph(State)
@@ -163,25 +163,20 @@ graph = builder.compile(checkpointer=memory)
 
 @router.post("/")
 async def run(message: str):
-    try:
-        system_prompt = SystemMessage(content=(
-            "You are a professional healthcare assistant. Provide clear, accurate, and evidence-based information on: "
-            "general health, symptoms, and preventive care; medication uses and precautions. "
-            "Be empathetic, concise, and avoid diagnostics or treatment advice. Always encourage consulting a licensed healthcare provider."
-        ))
+    system_prompt = SystemMessage(content=(
+        "You are a professional healthcare assistant. Provide clear, accurate, and evidence-based information on: "
+        "general health, symptoms, and preventive care; medication uses and precautions. "
+        "Be empathetic, concise, and avoid diagnostics or treatment advice. Always encourage consulting a licensed healthcare provider."
+    ))
 
-        initial_messages = [system_prompt, HumanMessage(content=message)]
+    initial_messages = [system_prompt, HumanMessage(content=message)]
 
-        # Invoke the graph to process user input and generate audio
-        audio, response_message = await call_modle(State(messages=initial_messages))
+    # Invoke the graph to process user input and generate audio
+    audio, response_message = await call_modle(State(messages=initial_messages))
 
-        # Return the audio file as a response
-        return FileResponse(
-            FILE_NAME,
-            media_type="audio/wav",
-            filename="output_audio.wav"
-        )
-        
-    except Exception as e:
-        logger.error(f"Error processing request: {e}")
-        raise HTTPException(status_code=500, detail="Error generating audio response")
+    # Return the audio file as a response
+    return FileResponse(
+        FILE_NAME,
+        media_type="audio/wav",
+        filename="output_audio.wav"
+    )
