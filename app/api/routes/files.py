@@ -64,7 +64,7 @@ async def summarize_conversation(state: State) -> Dict[str, object]:
             if chunk.text is not None:
                 response_text += chunk.text
 
-    state["summary"] = response_text
+    summary = response_text
     delete_messages = [RemoveMessage(id=getattr(m, "id", None)) for m in state["messages"][:-2]]
 
     return {"summary": response_text, "messages": delete_messages}
@@ -108,7 +108,7 @@ async def call_model(state: State):
     response_message = AIMessage(content=response_text)
     messages.append(response_message)
 
-    return {"messages": messages, "last_message": response_message}
+    return {"messages": messages[-1]}
 
 # Helper functions to extract text from PDF and images
 

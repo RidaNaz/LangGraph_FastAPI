@@ -72,6 +72,8 @@ def summarize_conversation(state: State):
             response_modalities=["TEXT"],
         )
     )
+    
+    summary = response.text
 
     # Delete all but the 2 most recent messages
     delete_messages = [RemoveMessage(id=getattr(m, "id", None)) for m in state["messages"][:-2]]

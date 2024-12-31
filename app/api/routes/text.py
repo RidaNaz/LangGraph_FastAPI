@@ -69,7 +69,7 @@ async def summarize_conversation(state: State) -> Dict[str, object]:
                 response_text += chunk.text
 
     # Update and return the new summary
-    state["summary"] = response_text
+    summary = response_text
     
     # Delete all but the 2 most recent messages
     delete_messages = [RemoveMessage(id=getattr(m, "id", None)) for m in state["messages"][:-2]]
@@ -81,7 +81,6 @@ async def summarize_conversation(state: State) -> Dict[str, object]:
 def select_next_node(state: State) -> Union[Literal["summarize"], str]:
 
     messages = state["messages"]
-    last_message = messages[-1]
 
     # If there are more than six messages, route to "summarize_conversation"
     if len(messages) > 6:
@@ -139,7 +138,7 @@ async def call_model(state: State):
     messages.append(response_message)
 
     # Update and return the state
-    return {"messages": messages, "last_message": response_message}
+    return {"messages": messages[-1]}
 
 # Build Graph
 

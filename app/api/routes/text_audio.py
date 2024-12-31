@@ -82,7 +82,7 @@ async def summarize_conversation(state: State) -> Dict[str, object]:
                 response_text += chunk.text
 
     # Update and return the new summary
-    state["summary"] = response_text
+    summary = response_text
     
     # Delete all but the 2 most recent messages
     delete_messages = [RemoveMessage(id=getattr(m, "id", None)) for m in state["messages"][:-2]]
@@ -142,7 +142,7 @@ async def call_modle(state: State):
   messages.append(response_message)
 
   # Display the audio file in a Jupyter/Colab notebook
-  return Audio(FILE_NAME, autoplay=True), {"messages": messages}
+  return Audio(FILE_NAME, autoplay=True), {"messages": messages[-1]}
   
 
 builder:StateGraph = StateGraph(State)
