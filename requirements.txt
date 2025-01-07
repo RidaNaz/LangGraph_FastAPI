@@ -1,19 +1,32 @@
 langchain-core==0.3.28 
 langchain==0.3.13
-langchain_community
 langgraph==0.2.60
 google-genai==0.3.0
 IPython
-pydantic-core==2.23.3  
+python-dotenv==1.0.1
+pydantic-core==2.23.3 
 pydantic-settings==2.5.2  
 pydantic==2.9.1
-python-dotenv==1.0.1
 uvicorn==0.25.0
 fastapi-cli[standard]==0.0.5  
 fastapi==0.115.3
 python-multipart
-Pillow
-torch
-pytesseract
-pymupdf
-tesseract
+
+# for file:
+# pytesseract
+# pymupdf
+
+# for x-ray:
+# Pillow
+# torch
+# tesseract
+
+# for RAG:
+pypdf
+pinecone
+pinecone-client
+langchain-pinecone
+pinecone-notebooks
+sentence-transformers
+langchain_google_genai
+langchain-community

@@ -12,7 +12,7 @@ import pytesseract  # For OCR text extraction from images
 
 router = APIRouter()
 
-pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
+# pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 
 os.environ['GOOGLE_API_KEY'] = os.getenv('GOOGLE_API_KEY')
 
@@ -143,7 +143,7 @@ builder.add_conditional_edges(
 graph = builder.compile(checkpointer=memory)
 
 
-@router.post("/upload")
+@router.post("/")
 async def run(message: str = None, file: UploadFile = File(None)):
     # Ensure the temp_files directory exists
     os.makedirs("./temp_files", exist_ok=True)
